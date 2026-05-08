@@ -1,0 +1,1171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer Academy School – Excellence in Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #0a1628;
+      --blue:   #1a3a6b;
+      --sky:    #2e6bc4;
+      --accent: #f5a623;
+      --gold:   #d4a017;
+      --light:  #f0f4fb;
+      --white:  #ffffff;
+      --gray:   #6b7a99;
+      --shadow: 0 8px 32px rgba(10,22,40,0.13);
+      --radius: 16px;
+      --fh: 'Playfair Display', Georgia, serif;
+      --fb: 'DM Sans', sans-serif;
+      --tr: all 0.38s cubic-bezier(.4,0,.2,1);
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--fb); background:var(--light); color:var(--navy); overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--light); }
+    ::-webkit-scrollbar-thumb { background:var(--sky); border-radius:10px; }
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:.25;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    #progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent),#fff88f,var(--sky)); z-index:9999; width:0%; transition:width .1s linear; border-radius:0 2px 2px 0; }
+
+    /* ─── NAV ─── */
+    header { position:fixed; top:0; left:0; right:0; z-index:1200; background:rgba(10,22,40,.93); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,.07); transition:var(--tr); }
+    header.scrolled { background:rgba(10,22,40,.98); box-shadow:0 4px 24px rgba(0,0,0,.3); }
+    .nav-inner { max-width:1200px; margin:0 auto; padding:0 28px; height:72px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { display:flex; align-items:center; gap:12px; }
+    .logo-icon { width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,var(--accent),var(--gold)); display:grid; place-items:center; font-size:1.3rem; box-shadow:0 4px 16px rgba(245,166,35,.35); }
+    .logo-text { font-family:var(--fh); font-size:1.12rem; color:#fff; line-height:1.2; }
+    .logo-text span { display:block; font-family:var(--fb); font-size:.7rem; font-weight:400; color:var(--accent); letter-spacing:.12em; text-transform:uppercase; }
+    nav ul { list-style:none; display:flex; gap:4px; align-items:center; }
+    nav a { color:rgba(255,255,255,.75); font-size:.88rem; font-weight:500; padding:8px 16px; border-radius:8px; transition:var(--tr); letter-spacing:.02em; position:relative; }
+    nav a:hover { color:#fff; background:rgba(255,255,255,.08); }
+    nav a.active { color:#fff; }
+    nav a.active::after { content:''; position:absolute; bottom:-2px; left:50%; transform:translateX(-50%); width:20px; height:2px; background:var(--accent); border-radius:2px; }
+    .nav-cta { background:linear-gradient(135deg,var(--accent),var(--gold)) !important; color:var(--navy) !important; font-weight:700 !important; box-shadow:0 3px 14px rgba(245,166,35,.3); }
+    .nav-cta:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(245,166,35,.45) !important; }
+    .nav-cta.active::after { display:none; }
+    .hamburger { display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:6px; }
+    .hamburger span { display:block; width:26px; height:2px; background:#fff; border-radius:2px; transition:var(--tr); }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+    /* ─── HERO ─── */
+    .hero { min-height:100vh; position:relative; overflow:hidden; background:linear-gradient(rgba(10,22,40,.78),rgba(10,22,40,.82)),url('https://images.unsplash.com/photo-1562774053-701939374585?w=1600&q=80') center/cover no-repeat; display:flex; align-items:center; justify-content:center; text-align:center; padding:130px 28px 90px; }
+    .orb { position:absolute; border-radius:50%; pointer-events:none; }
+    .orb1 { width:700px; height:700px; top:-200px; right:-180px; background:radial-gradient(circle,rgba(46,107,196,.28),transparent 70%); }
+    .orb2 { width:500px; height:500px; bottom:-150px; left:-100px; background:radial-gradient(circle,rgba(245,166,35,.13),transparent 70%); }
+    .orb3 { width:300px; height:300px; top:30%; left:5%; background:radial-gradient(circle,rgba(46,107,196,.12),transparent 70%); animation:pulse 6s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.15);opacity:1} }
+    .hero-content { position:relative; z-index:2; max-width:840px; margin:0 auto; width:100%; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(245,166,35,.13); border:1px solid rgba(245,166,35,.35); color:var(--accent); padding:8px 20px; border-radius:50px; font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:28px; animation:fadeUp .8s ease both; }
+    .hero h1 { font-family:var(--fh); font-size:clamp(2.3rem,6vw,4.6rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:24px; animation:fadeUp .9s .1s ease both; }
+    .hero h1 em { font-style:normal; background:linear-gradient(90deg,var(--accent),#fff88f); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero p { max-width:560px; margin:0 auto 40px; color:rgba(255,255,255,.72); font-size:1.1rem; line-height:1.8; animation:fadeUp 1s .2s ease both; }
+    .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; animation:fadeUp 1s .3s ease both; }
+    .btn-primary { background:linear-gradient(135deg,var(--accent),var(--gold)); color:var(--navy); padding:15px 36px; border-radius:50px; font-weight:700; font-size:.95rem; cursor:pointer; border:none; box-shadow:0 6px 24px rgba(245,166,35,.35); transition:var(--tr); }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(245,166,35,.5); }
+    .btn-outline { background:transparent; color:#fff; padding:15px 36px; border-radius:50px; font-weight:600; font-size:.95rem; cursor:pointer; border:2px solid rgba(255,255,255,.3); transition:var(--tr); display:inline-block; }
+    .btn-outline:hover { border-color:#fff; background:rgba(255,255,255,.07); transform:translateY(-2px); }
+    .hero-stats { display:flex; flex-wrap:wrap; justify-content:center; max-width:720px; margin:64px auto 0; background:rgba(255,255,255,.05); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:20px; overflow:hidden; animation:fadeUp 1s .5s ease both; }
+    .stat { flex:1; min-width:130px; padding:28px 20px; text-align:center; border-right:1px solid rgba(255,255,255,.07); }
+    .stat:last-child { border-right:none; }
+    .stat-num { font-family:var(--fh); font-size:2rem; font-weight:900; color:var(--accent); line-height:1; }
+    .stat-label { font-size:.75rem; color:rgba(255,255,255,.5); margin-top:6px; letter-spacing:.07em; text-transform:uppercase; }
+
+    /* ─── SHARED ─── */
+    section { padding:96px 28px; }
+    .container { max-width:1160px; margin:0 auto; }
+    .section-label { display:inline-flex; align-items:center; gap:8px; font-size:.76rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--sky); margin-bottom:14px; }
+    .section-label::before { content:''; display:block; width:26px; height:2px; background:var(--sky); border-radius:2px; }
+    .section-title { font-family:var(--fh); font-size:clamp(1.9rem,4vw,2.8rem); font-weight:900; color:var(--navy); line-height:1.18; margin-bottom:18px; }
+    .section-sub { color:var(--gray); font-size:1.02rem; max-width:520px; line-height:1.75; }
+
+    /* ─── ABOUT ─── */
+    #about { background:#fff; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+    .about-visual { position:relative; }
+    .about-img-card { background:linear-gradient(160deg,var(--navy),var(--blue)); border-radius:24px; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; font-size:6rem; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+    .about-img-card::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 40%,rgba(46,107,196,.4),transparent 60%); }
+    .about-float-card { position:absolute; bottom:-24px; right:-24px; background:#fff; border-radius:16px; padding:18px 22px; box-shadow:var(--shadow); display:flex; align-items:center; gap:14px; z-index:2; }
+    .about-float-icon { width:46px; height:46px; background:linear-gradient(135deg,var(--accent),var(--gold)); border-radius:12px; display:grid; place-items:center; font-size:1.3rem; }
+    .about-float-text strong { display:block; font-weight:700; color:var(--navy); font-size:.93rem; }
+    .about-float-text small { color:var(--gray); font-size:.78rem; }
+    .about-features { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
+    .about-feature { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; border-radius:12px; background:var(--light); transition:var(--tr); }
+    .about-feature:hover { background:#e8eef8; transform:translateX(5px); }
+    .about-feature-icon { width:40px; height:40px; min-width:40px; border-radius:10px; background:linear-gradient(135deg,var(--sky),var(--blue)); display:grid; place-items:center; font-size:1.1rem; }
+    .about-feature h4 { font-weight:600; font-size:.93rem; color:var(--navy); margin-bottom:3px; }
+    .about-feature p { font-size:.84rem; color:var(--gray); line-height:1.55; }
+
+    /* ─── COURSES ─── */
+    #courses { background:var(--light); }
+    .courses-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; flex-wrap:wrap; gap:20px; }
+    .courses-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+    .course-card { background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:0 2px 12px rgba(10,22,40,.06); transition:var(--tr); cursor:pointer; position:relative; }
+    .course-card:hover { transform:translateY(-8px); box-shadow:0 20px 48px rgba(10,22,40,.14); }
+    .course-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--stripe-color,var(--sky)); }
+    .stripe-blue   { --stripe-color:#2e6bc4; }
+    .stripe-orange { --stripe-color:#f5a623; }
+    .stripe-green  { --stripe-color:#28a745; }
+    .stripe-purple { --stripe-color:#9b59b6; }
+    .stripe-red    { --stripe-color:#e74c3c; }
+    .stripe-teal   { --stripe-color:#1abc9c; }
+    .course-card-top { padding:30px 26px 22px; }
+    .course-emoji { font-size:2.4rem; margin-bottom:16px; display:block; }
+    .course-card h3 { font-family:var(--fh); font-size:1.15rem; font-weight:700; color:var(--navy); margin-bottom:10px; }
+    .course-card p { font-size:.88rem; color:var(--gray); line-height:1.7; }
+    .course-card-bottom { padding:14px 26px; border-top:1px solid #eef1f8; display:flex; justify-content:space-between; align-items:center; }
+    .course-tag { font-size:.73rem; font-weight:600; padding:4px 12px; border-radius:20px; letter-spacing:.04em; }
+    .tag-science { background:#e8f4ff; color:#1a6bc4; }
+    .tag-math    { background:#fff3e0; color:#b85c00; }
+    .tag-lang    { background:#e8faf0; color:#1a7a48; }
+    .tag-arts    { background:#f8e8ff; color:#7a1ab8; }
+    .tag-tech    { background:#ffe8e8; color:#b81a1a; }
+    .tag-sports  { background:#e8fff0; color:#1ab84a; }
+    .course-arrow { width:34px; height:34px; border-radius:50%; background:var(--light); display:grid; place-items:center; font-size:.95rem; transition:var(--tr); }
+    .course-card:hover .course-arrow { background:var(--navy); color:#fff; }
+
+    /* ─── MODAL ─── */
+    .modal-overlay { position:fixed; inset:0; background:rgba(10,22,40,.72); z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity .3s ease; backdrop-filter:blur(6px); }
+    .modal-overlay.open { opacity:1; pointer-events:all; }
+    .modal-box { background:#fff; border-radius:24px; max-width:560px; width:100%; padding:44px 40px; position:relative; box-shadow:0 32px 80px rgba(0,0,0,.3); transform:translateY(24px) scale(.97); transition:transform .35s cubic-bezier(.4,0,.2,1); max-height:90vh; overflow-y:auto; }
+    .modal-overlay.open .modal-box { transform:translateY(0) scale(1); }
+    .modal-close { position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:50%; border:none; background:var(--light); cursor:pointer; font-size:1.1rem; display:grid; place-items:center; color:var(--navy); transition:var(--tr); }
+    .modal-close:hover { background:var(--navy); color:#fff; }
+    .modal-emoji { font-size:3.2rem; margin-bottom:14px; display:block; }
+    .modal-title { font-family:var(--fh); font-size:1.65rem; color:var(--navy); margin-bottom:10px; }
+    .modal-tag { display:inline-block; font-size:.75rem; font-weight:700; padding:5px 14px; border-radius:20px; margin-bottom:16px; }
+    .modal-body { color:var(--gray); font-size:.93rem; line-height:1.75; }
+    .modal-highlights { margin-top:20px; display:flex; flex-direction:column; gap:10px; }
+    .modal-highlight { display:flex; align-items:center; gap:10px; font-size:.9rem; color:var(--navy); }
+    .modal-highlight::before { content:'✓'; color:var(--sky); font-weight:700; }
+    .modal-enroll { margin-top:28px; width:100%; padding:14px; background:linear-gradient(135deg,var(--sky),var(--blue)); color:#fff; border:none; border-radius:10px; font-family:var(--fb); font-size:.97rem; font-weight:700; cursor:pointer; transition:var(--tr); }
+    .modal-enroll:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(46,107,196,.35); }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { background:#fff; overflow:hidden; }
+    .testimonials-header { text-align:center; margin-bottom:52px; }
+    .testimonials-header .section-label { justify-content:center; }
+    .testimonials-header .section-label::before { display:none; }
+    .testimonials-header .section-sub { margin:0 auto; text-align:center; }
+    .carousel-wrap { position:relative; }
+    .carousel-outer { overflow:hidden; border-radius:20px; }
+    .carousel-track { display:flex; gap:24px; transition:transform .55s cubic-bezier(.4,0,.2,1); }
+    .tcard { background:var(--light); border-radius:20px; padding:30px 26px; transition:var(--tr); flex-shrink:0; }
+    .tcard:hover { box-shadow:var(--shadow); transform:translateY(-4px); }
+    .tcard-quote { font-size:2.6rem; color:var(--accent); line-height:1; margin-bottom:10px; font-family:Georgia,serif; }
+    .tcard-stars { color:var(--accent); font-size:.95rem; letter-spacing:2px; margin-bottom:14px; }
+    .tcard-text { color:var(--gray); font-size:.91rem; line-height:1.72; margin-bottom:22px; }
+    .tcard-author { display:flex; align-items:center; gap:12px; }
+    .tcard-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--sky),var(--blue)); display:grid; place-items:center; font-size:1.2rem; flex-shrink:0; }
+    .tcard-name { font-weight:700; font-size:.9rem; color:var(--navy); }
+    .tcard-role { font-size:.78rem; color:var(--gray); }
+    .carousel-controls { display:flex; justify-content:center; gap:12px; margin-top:34px; align-items:center; }
+    .carousel-btn { width:44px; height:44px; border-radius:50%; border:2px solid #dde3f0; background:#fff; cursor:pointer; font-size:1.1rem; display:grid; place-items:center; color:var(--navy); transition:var(--tr); }
+    .carousel-btn:hover { background:var(--navy); border-color:var(--navy); color:#fff; }
+    .carousel-dots { display:flex; gap:8px; align-items:center; }
+    .dot { width:8px; height:8px; border-radius:50%; background:#dde3f0; cursor:pointer; transition:var(--tr); border:none; }
+    .dot.active { background:var(--sky); width:24px; border-radius:4px; }
+
+    /* ─── ACHIEVEMENTS RIBBON ─── */
+    #achievements { background:linear-gradient(135deg,var(--navy),var(--blue)); padding:72px 28px; overflow:hidden; }
+    .achievements-inner { max-width:1160px; margin:0 auto; }
+    .achievements-header { text-align:center; margin-bottom:52px; }
+    .achievements-header .section-label { justify-content:center; color:var(--accent); }
+    .achievements-header .section-label::before { background:var(--accent); }
+    .achievements-header .section-title { color:#fff; }
+    .achievements-header .section-sub { color:rgba(255,255,255,.6); margin:0 auto; text-align:center; }
+    .ach-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+    .ach-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:20px; padding:28px 24px; text-align:center; transition:var(--tr); }
+    .ach-card:hover { background:rgba(255,255,255,.11); transform:translateY(-6px); border-color:rgba(245,166,35,.4); }
+    .ach-icon { font-size:2.4rem; margin-bottom:14px; display:block; }
+    .ach-card h4 { font-family:var(--fh); font-size:1.05rem; color:#fff; margin-bottom:8px; }
+    .ach-card p { font-size:.83rem; color:rgba(255,255,255,.55); line-height:1.6; }
+    .ach-year { display:inline-block; margin-top:12px; font-size:.72rem; font-weight:700; color:var(--accent); background:rgba(245,166,35,.12); padding:3px 12px; border-radius:20px; letter-spacing:.06em; text-transform:uppercase; }
+
+    /* ─── CONTACT ─── */
+    #contact { background:var(--navy); position:relative; overflow:hidden; }
+    #contact::before { content:''; position:absolute; width:600px; height:600px; background:radial-gradient(circle,rgba(46,107,196,.18),transparent 70%); top:-200px; right:-200px; pointer-events:none; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:64px; align-items:start; }
+    .contact-info .section-title { color:#fff; }
+    .contact-info .section-sub { color:rgba(255,255,255,.6); }
+    .contact-details { margin-top:36px; display:flex; flex-direction:column; gap:18px; }
+    .contact-item { display:flex; align-items:center; gap:16px; }
+    .contact-item-icon { width:46px; height:46px; min-width:46px; border-radius:12px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); display:grid; place-items:center; font-size:1.1rem; }
+    .contact-item-text strong { color:#fff; display:block; font-size:.9rem; }
+    .contact-item-text span { color:rgba(255,255,255,.5); font-size:.83rem; }
+    .contact-form-box { background:#fff; border-radius:24px; padding:40px 36px; box-shadow:0 24px 64px rgba(0,0,0,.25); }
+    .contact-form-box h3 { font-family:var(--fh); font-size:1.45rem; color:var(--navy); margin-bottom:6px; }
+    .contact-form-box > p { color:var(--gray); font-size:.88rem; margin-bottom:24px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .form-group { margin-bottom:18px; }
+    .form-group label { display:block; font-size:.8rem; font-weight:600; color:var(--navy); margin-bottom:6px; letter-spacing:.03em; }
+    .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 15px; border:1.5px solid #dde3f0; border-radius:10px; font-family:var(--fb); font-size:.92rem; color:var(--navy); background:#f8faff; transition:var(--tr); outline:none; -webkit-appearance:none; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--sky); background:#fff; box-shadow:0 0 0 3px rgba(46,107,196,.11); }
+    .form-group textarea { resize:vertical; min-height:105px; }
+    .error-msg { display:none; color:#d32f2f; font-size:.78rem; margin-top:4px; }
+    .error-msg.show { display:block; }
+    .form-group.has-error input, .form-group.has-error textarea { border-color:#d32f2f; background:#fff5f5; }
+    .submit-btn { width:100%; padding:14px; border:none; border-radius:10px; background:linear-gradient(135deg,var(--sky),var(--blue)); color:#fff; font-family:var(--fb); font-size:.97rem; font-weight:700; cursor:pointer; transition:var(--tr); }
+    .submit-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(46,107,196,.35); }
+    .success-box { display:none; background:#e8faf0; border:1.5px solid #28a745; border-radius:10px; padding:13px 16px; color:#1a7a48; font-weight:600; font-size:.9rem; margin-bottom:18px; align-items:center; gap:10px; }
+    .success-box.show { display:flex; }
+
+    /* ─── FOOTER ─── */
+    footer { background:#060e1c; color:rgba(255,255,255,.45); text-align:center; padding:48px 28px; font-size:.86rem; }
+    footer strong { color:var(--accent); }
+    .footer-links { display:flex; justify-content:center; gap:22px; margin-top:12px; flex-wrap:wrap; }
+    .footer-links a { color:rgba(255,255,255,.38); transition:var(--tr); font-size:.83rem; }
+    .footer-links a:hover { color:var(--accent); }
+    .footer-top { display:flex; justify-content:center; align-items:center; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+    .footer-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(245,166,35,.1); border:1px solid rgba(245,166,35,.2); color:var(--accent); padding:6px 16px; border-radius:30px; font-size:.77rem; font-weight:600; letter-spacing:.07em; }
+    .footer-divider { width:40px; height:1px; background:rgba(255,255,255,.1); margin:16px auto; }
+
+    /* ─── ANNOUNCEMENT BANNER ─── */
+    #ann-banner { margin-top:72px; background:linear-gradient(90deg,#0f2952 0%,#1a3a6b 40%,#0f2952 100%); border-bottom:1px solid rgba(245,166,35,.25); position:relative; overflow:hidden; z-index:1100; }
+    #ann-banner::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(245,166,35,.03) 120px,rgba(245,166,35,.03) 121px); pointer-events:none; }
+    .ann-inner { max-width:1200px; margin:0 auto; padding:0 60px 0 28px; height:44px; display:flex; align-items:center; justify-content:center; gap:18px; position:relative; }
+    .ann-pulse { width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 rgba(245,166,35,.5); animation:annPulse 1.6s ease-in-out infinite; flex-shrink:0; }
+    @keyframes annPulse { 0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,.55)} 60%{box-shadow:0 0 0 8px rgba(245,166,35,0)} }
+    .ann-text { font-size:.82rem; font-weight:600; color:rgba(255,255,255,.92); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .ann-text strong { color:var(--accent); }
+    .ann-link { display:inline-flex; align-items:center; gap:5px; background:var(--accent); color:var(--navy); font-size:.75rem; font-weight:700; padding:4px 12px; border-radius:20px; white-space:nowrap; transition:var(--tr); text-decoration:none; }
+    .ann-link:hover { background:#fff; }
+    .ann-close { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:rgba(255,255,255,.45); font-size:1rem; cursor:pointer; padding:4px 6px; line-height:1; transition:var(--tr); }
+    .ann-close:hover { color:#fff; }
+    #ann-banner.hidden { display:none; }
+
+    /* ─── GALLERY (upgraded) ─── */
+    #gallery { background:#fff; }
+    .gallery-filter { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
+    .gf-btn { background:var(--light); color:var(--navy); border:1.5px solid transparent; padding:8px 20px; border-radius:30px; font-family:var(--fb); font-size:.83rem; font-weight:600; cursor:pointer; transition:var(--tr); }
+    .gf-btn:hover { border-color:var(--sky); color:var(--sky); }
+    .gf-btn.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .gallery-masonry { columns:4; column-gap:14px; margin-top:0; }
+    .g-item { break-inside:avoid; margin-bottom:14px; border-radius:16px; overflow:hidden; position:relative; cursor:pointer; display:block; }
+    .g-item.hidden { display:none; }
+    .g-inner { width:100%; display:block; background:linear-gradient(160deg,var(--navy),var(--blue)); position:relative; overflow:hidden; }
+    .g-inner img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .45s ease; }
+    .g-item:hover .g-inner img { transform:scale(1.07); }
+    .g-inner-placeholder { min-height:160px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; }
+    .g-item:first-child .g-inner-placeholder { min-height:280px; font-size:4.5rem; }
+    .g-inner::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 40% 40%,rgba(46,107,196,.45),transparent 65%); z-index:1; pointer-events:none; }
+    .g-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(10,22,40,.78) 0%,transparent 55%); display:flex; align-items:flex-end; padding:16px; opacity:0; transition:opacity .35s; z-index:2; }
+    .g-item:hover .g-overlay { opacity:1; }
+    .g-label { color:#fff; font-size:.82rem; font-weight:600; }
+    .g-cat-tag { font-size:.68rem; background:rgba(245,166,35,.85); color:var(--navy); padding:2px 9px; border-radius:10px; font-weight:700; margin-right:6px; }
+    /* Lightbox */
+    #lightbox { position:fixed; inset:0; background:rgba(5,12,28,.95); z-index:3000; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s; }
+    #lightbox.open { opacity:1; pointer-events:all; }
+    .lb-content { max-width:800px; width:90%; position:relative; }
+    .lb-img-wrap { border-radius:18px; overflow:hidden; background:var(--navy); min-height:300px; display:flex; align-items:center; justify-content:center; font-size:6rem; }
+    .lb-img-wrap img { width:100%; display:block; border-radius:18px; }
+    .lb-caption { color:rgba(255,255,255,.8); font-size:.9rem; text-align:center; margin-top:14px; font-weight:500; }
+    .lb-close { position:absolute; top:-14px; right:-14px; width:38px; height:38px; border-radius:50%; border:none; background:rgba(255,255,255,.12); color:#fff; font-size:1.1rem; cursor:pointer; display:grid; place-items:center; transition:var(--tr); }
+    .lb-close:hover { background:rgba(255,255,255,.25); }
+    .lb-nav { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:none; background:rgba(255,255,255,.1); color:#fff; font-size:1.2rem; cursor:pointer; display:grid; place-items:center; transition:var(--tr); }
+    .lb-nav:hover { background:rgba(255,255,255,.22); }
+    .lb-prev { left:-58px; }
+    .lb-next { right:-58px; }
+
+    /* ─── ADMISSIONS TIMELINE (visual) ─── */
+    .adm-timeline { position:relative; margin-top:48px; }
+    .adm-timeline::before { content:''; position:absolute; left:28px; top:0; bottom:0; width:3px; background:linear-gradient(to bottom,var(--sky),var(--accent),var(--sky)); border-radius:2px; }
+    .adm-tl-item { display:flex; gap:28px; align-items:flex-start; margin-bottom:40px; position:relative; }
+    .adm-tl-item:last-child { margin-bottom:0; }
+    .adm-tl-dot { width:58px; min-width:58px; height:58px; border-radius:50%; background:linear-gradient(135deg,var(--sky),var(--blue)); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:1; box-shadow:0 0 0 4px #fff, 0 4px 18px rgba(46,107,196,.35); font-size:1.4rem; line-height:1; flex-shrink:0; }
+    .adm-tl-dot-num { font-size:.62rem; font-weight:700; color:rgba(255,255,255,.7); letter-spacing:.06em; margin-top:1px; }
+    .adm-tl-card { background:#fff; border:1.5px solid #e8eef8; border-radius:18px; padding:22px 26px; flex:1; transition:var(--tr); box-shadow:0 2px 10px rgba(10,22,40,.05); }
+    .adm-tl-card:hover { border-color:var(--sky); box-shadow:0 8px 28px rgba(46,107,196,.13); transform:translateX(6px); }
+    .adm-tl-card h4 { font-family:var(--fh); font-size:1.05rem; color:var(--navy); margin-bottom:6px; }
+    .adm-tl-card p { font-size:.85rem; color:var(--gray); line-height:1.6; }
+    .adm-tl-badge { display:inline-block; margin-top:10px; font-size:.72rem; font-weight:700; padding:3px 12px; border-radius:20px; background:#e8f4ff; color:var(--sky); letter-spacing:.04em; }
+
+    /* ─── FAQ ACCORDION ─── */
+    #faq { background:var(--light); }
+    .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:48px; }
+    .faq-item { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 2px 10px rgba(10,22,40,.05); transition:var(--tr); }
+    .faq-item.open { box-shadow:0 8px 28px rgba(10,22,40,.10); }
+    .faq-q { width:100%; background:none; border:none; padding:22px 24px; text-align:left; font-family:var(--fb); font-size:.95rem; font-weight:600; color:var(--navy); cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:14px; transition:var(--tr); }
+    .faq-q:hover { color:var(--sky); }
+    .faq-item.open .faq-q { color:var(--sky); }
+    .faq-icon { width:28px; height:28px; min-width:28px; border-radius:50%; background:var(--light); display:grid; place-items:center; font-size:.85rem; font-weight:700; color:var(--navy); transition:var(--tr); flex-shrink:0; }
+    .faq-item.open .faq-icon { background:var(--sky); color:#fff; transform:rotate(45deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.4,0,.2,1), padding .3s; }
+    .faq-item.open .faq-a { max-height:300px; }
+    .faq-a-inner { padding:0 24px 22px; font-size:.88rem; color:var(--gray); line-height:1.75; border-top:1px solid #eef1f8; padding-top:16px; }
+
+    /* ─── BACK TO TOP ─── */
+    #back-top { position:fixed; bottom:28px; right:28px; z-index:1500; width:48px; height:48px; border-radius:50%; border:none; background:linear-gradient(135deg,var(--accent),var(--gold)); color:var(--navy); font-size:1.2rem; cursor:pointer; box-shadow:0 6px 20px rgba(245,166,35,.4); display:grid; place-items:center; opacity:0; pointer-events:none; transform:translateY(12px); transition:var(--tr); font-weight:700; }
+    #back-top.visible { opacity:1; pointer-events:all; transform:translateY(0); }
+    #back-top:hover { transform:translateY(-3px) scale(1.08); box-shadow:0 10px 28px rgba(245,166,35,.55); }
+
+    /* ─── WHATSAPP BUTTON ─── */
+    #wa-btn { position:fixed; bottom:86px; right:26px; z-index:1500; width:52px; height:52px; border-radius:50%; border:none; background:#25D366; color:#fff; font-size:1.5rem; cursor:pointer; box-shadow:0 6px 22px rgba(37,211,102,.45); display:grid; place-items:center; transition:var(--tr); text-decoration:none; }
+    #wa-btn:hover { transform:translateY(-3px) scale(1.08); box-shadow:0 10px 30px rgba(37,211,102,.6); }
+    #wa-btn::after { content:'Chat with us'; position:absolute; right:62px; background:#25D366; color:#fff; font-family:var(--fb); font-size:.75rem; font-weight:600; white-space:nowrap; padding:6px 12px; border-radius:20px; opacity:0; pointer-events:none; transition:opacity .25s; }
+    #wa-btn:hover::after { opacity:1; }
+
+    /* ─── CBSE TRUST STRIP ─── */
+    .trust-strip { background:linear-gradient(90deg,#fff 0%,#f5f8ff 100%); border-top:1px solid #e2e8f5; border-bottom:1px solid #e2e8f5; padding:7px 16px; }
+    .trust-inner { max-width:1160px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:nowrap; }
+    .trust-badge { display:inline-flex; align-items:center; gap:6px; font-size:.72rem; font-weight:700; color:var(--navy); letter-spacing:.01em; white-space:nowrap; }
+    .trust-badge .tb-icon { font-size:1rem; line-height:1; }
+    .trust-sep { width:1px; height:16px; background:#dde3f0; flex-shrink:0; }
+
+    /* ─── ADMISSIONS SECTION ─── */
+    #admissions { background:#fff; }
+    .admissions-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:start; }
+    .fee-cards { display:flex; flex-direction:column; gap:16px; margin-top:32px; }
+    .fee-card { border:1.5px solid #e2e8f5; border-radius:16px; padding:22px 24px; display:flex; align-items:center; gap:18px; transition:var(--tr); }
+    .fee-card:hover { border-color:var(--sky); box-shadow:0 6px 24px rgba(46,107,196,.1); transform:translateX(6px); }
+    .fee-card-icon { width:48px; height:48px; min-width:48px; border-radius:13px; background:linear-gradient(135deg,var(--sky),var(--blue)); display:grid; place-items:center; font-size:1.3rem; }
+    .fee-card-body strong { display:block; color:var(--navy); font-size:.95rem; font-weight:700; margin-bottom:2px; }
+    .fee-card-body span { color:var(--gray); font-size:.83rem; }
+    .admissions-steps { margin-top:0; }
+    .step-list { display:flex; flex-direction:column; gap:0; }
+    .step-item { display:flex; gap:16px; position:relative; padding-bottom:28px; }
+    .step-item:last-child { padding-bottom:0; }
+    .step-item:not(:last-child) .step-num::after { content:''; position:absolute; top:40px; left:19px; width:2px; height:calc(100% - 40px); background:linear-gradient(to bottom,var(--sky),transparent); }
+    .step-num { position:relative; width:40px; height:40px; min-width:40px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--gold)); display:grid; place-items:center; font-weight:900; font-size:.9rem; color:var(--navy); box-shadow:0 3px 12px rgba(245,166,35,.3); }
+    .step-body { padding-top:8px; }
+    .step-body strong { display:block; color:var(--navy); font-size:.93rem; font-weight:700; margin-bottom:3px; }
+    .step-body span { color:var(--gray); font-size:.83rem; line-height:1.55; }
+    .admissions-cta-row { display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+    .btn-wa { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; padding:13px 26px; border-radius:50px; font-weight:700; font-size:.9rem; transition:var(--tr); border:none; cursor:pointer; text-decoration:none; }
+    .btn-wa:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(37,211,102,.4); }
+
+    /* ─── EVENTS SECTION ─── */
+    #events { background:var(--light); }
+    .events-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-top:48px; }
+    .event-card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 2px 12px rgba(10,22,40,.06); transition:var(--tr); display:flex; flex-direction:column; }
+    .event-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(10,22,40,.12); }
+    .event-date-band { background:linear-gradient(135deg,var(--navy),var(--blue)); padding:20px 22px; display:flex; align-items:center; gap:16px; }
+    .event-cal { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15); border-radius:12px; padding:8px 12px; text-align:center; min-width:56px; }
+    .event-cal-day { font-family:var(--fh); font-size:1.8rem; font-weight:900; color:#fff; line-height:1; }
+    .event-cal-month { font-size:.65rem; font-weight:700; color:var(--accent); letter-spacing:.1em; text-transform:uppercase; margin-top:2px; }
+    .event-type-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(245,166,35,.2); border:1px solid rgba(245,166,35,.35); color:var(--accent); font-size:.72rem; font-weight:700; padding:4px 10px; border-radius:20px; letter-spacing:.06em; text-transform:uppercase; }
+    .event-body { padding:20px 22px; flex:1; }
+    .event-body h4 { font-family:var(--fh); font-size:1.03rem; color:var(--navy); margin-bottom:8px; font-weight:700; }
+    .event-body p { font-size:.84rem; color:var(--gray); line-height:1.6; }
+    .event-meta { padding:14px 22px; border-top:1px solid #eef1f8; display:flex; align-items:center; gap:8px; font-size:.78rem; color:var(--gray); }
+
+    /* ─── GALLERY SECTION ─── */
+    #gallery { background:#fff; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,180px); gap:14px; margin-top:48px; }
+    .g-item { border-radius:16px; overflow:hidden; position:relative; cursor:pointer; }
+    .g-item:first-child { grid-column:span 2; grid-row:span 2; }
+    .g-item:nth-child(4) { grid-column:span 2; }
+    .g-inner { width:100%; height:100%; background:linear-gradient(160deg,var(--navy),var(--blue)); display:flex; align-items:center; justify-content:center; font-size:3rem; transition:transform .4s ease; position:relative; overflow:hidden; }
+    .g-inner img { transition:transform .4s ease; }
+    .g-item:hover .g-inner img { transform:scale(1.06); }
+    .g-item:first-child .g-inner { font-size:5rem; }
+    .g-inner::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 40% 40%,rgba(46,107,196,.5),transparent 65%); }
+    .g-overlay { position:absolute; inset:0; background:rgba(10,22,40,.6); display:flex; align-items:flex-end; padding:16px; opacity:0; transition:opacity .35s; }
+    .g-item:hover .g-overlay { opacity:1; }
+    .g-item:hover .g-inner { transform:scale(1.05); }
+    .g-label { color:#fff; font-size:.82rem; font-weight:600; }
+
+    /* ─── MAP SECTION ─── */
+    #location { background:var(--light); }
+    .location-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start; }
+    .map-frame { border-radius:20px; overflow:hidden; box-shadow:var(--shadow); border:3px solid #fff; aspect-ratio:16/10; background:linear-gradient(160deg,var(--navy) 0%,var(--blue) 100%); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:rgba(255,255,255,.7); font-size:.9rem; text-align:center; padding:20px; }
+    .map-frame iframe { width:100%; height:100%; border:none; display:block; }
+    .map-frame-link { display:block; padding:0; cursor:pointer; transition:var(--tr); position:relative; }
+    .map-frame-link:hover { transform:translateY(-4px); box-shadow:0 24px 56px rgba(10,22,40,.22); }
+    .map-visual { position:relative; width:100%; height:100%; }
+    .map-bg-svg { width:100%; height:100%; display:block; }
+    .map-cta-overlay { position:absolute; bottom:0; left:0; right:0; padding:20px 24px; background:linear-gradient(to top, rgba(10,22,40,.92) 0%, transparent 100%); display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+    .map-cta-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(245,166,35,.95); color:var(--navy); font-weight:700; font-size:.88rem; padding:10px 18px; border-radius:50px; box-shadow:0 4px 16px rgba(245,166,35,.4); transition:var(--tr); }
+    .map-frame-link:hover .map-cta-pill { background:#fff; box-shadow:0 6px 20px rgba(0,0,0,.2); }
+    .map-arrow { font-size:1rem; }
+    .map-addr { color:rgba(255,255,255,.65); font-size:.78rem; padding-left:4px; }
+    .map-placeholder { display:flex; flex-direction:column; align-items:center; gap:10px; }
+    .map-placeholder-icon { font-size:3rem; }
+    .map-placeholder p { font-size:.85rem; color:rgba(255,255,255,.6); }
+    .map-placeholder a { color:var(--accent); font-weight:600; font-size:.85rem; }
+    .location-details { display:flex; flex-direction:column; gap:16px; }
+    .loc-item { display:flex; align-items:flex-start; gap:14px; padding:18px 20px; background:#fff; border-radius:14px; box-shadow:0 2px 10px rgba(10,22,40,.06); transition:var(--tr); }
+    .loc-item:hover { transform:translateX(5px); box-shadow:0 6px 20px rgba(10,22,40,.1); }
+    .loc-icon { width:44px; height:44px; min-width:44px; border-radius:11px; background:linear-gradient(135deg,var(--sky),var(--blue)); display:grid; place-items:center; font-size:1.1rem; }
+    .loc-text strong { display:block; color:var(--navy); font-size:.9rem; font-weight:700; margin-bottom:3px; }
+    .loc-text span { color:var(--gray); font-size:.83rem; line-height:1.5; }
+
+    @media(max-width:900px){
+      .admissions-grid { grid-template-columns:1fr; gap:40px; }
+      .location-grid { grid-template-columns:1fr; }
+      .gallery-grid { grid-template-columns:repeat(2,1fr); grid-template-rows:auto; }
+      .g-item:first-child { grid-column:span 2; grid-row:span 1; }
+      .g-item:nth-child(4) { grid-column:span 1; }
+    }
+    @media(max-width:600px){
+      .gallery-grid { grid-template-columns:repeat(2,1fr); }
+      .g-item:first-child { grid-column:span 2; }
+      .g-item:nth-child(4) { grid-column:span 2; }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){
+      .about-grid { grid-template-columns:1fr; gap:40px; }
+      .contact-grid { grid-template-columns:1fr; gap:44px; }
+      .about-float-card { right:0; bottom:-16px; }
+    }
+    @media(max-width:1000px){
+      .faq-grid { grid-template-columns:1fr; }
+      .gallery-masonry { columns:3; }
+      .lb-prev { left:-46px; } .lb-next { right:-46px; }
+    }
+    @media(max-width:768px){
+      nav ul { display:none; position:fixed; top:72px; left:0; right:0; background:rgba(10,22,40,.98); backdrop-filter:blur(24px); flex-direction:column; padding:20px 0 28px; gap:2px; border-bottom:1px solid rgba(255,255,255,.07); }
+      nav ul.open { display:flex; }
+      nav a { display:block; padding:12px 28px; border-radius:0; }
+      nav a.active::after { display:none; }
+      .hamburger { display:flex; }
+      section { padding:64px 20px; }
+      .form-row { grid-template-columns:1fr; }
+      .contact-form-box { padding:26px 20px; }
+      #back-top { bottom:20px; right:20px; width:42px; height:42px; font-size:1rem; }
+      .gallery-masonry { columns:2; }
+      .ann-inner { padding:0 48px 0 16px; gap:10px; }
+      .ann-text { font-size:.72rem; line-height:1.25; white-space:normal; overflow:visible; text-overflow:clip; text-align:left; }
+      .ann-link { font-size:.68rem; padding:4px 10px; }
+      .trust-inner { gap:10px; flex-wrap:wrap; }
+      .trust-badge { font-size:.68rem; }
+      .trust-sep { display:none; }
+      .lb-prev,.lb-next { display:none; }
+    }
+    @media(max-width:480px){
+      .hero-btns { flex-direction:column; align-items:center; }
+      .btn-primary,.btn-outline { width:100%; max-width:300px; text-align:center; }
+      .hero-stats { flex-direction:column; }
+      .stat { border-right:none; border-bottom:1px solid rgba(255,255,255,.07); }
+      .stat:last-child { border-bottom:none; }
+      .modal-box { padding:28px 18px; }
+      .gallery-masonry { columns:2; }
+      .adm-timeline::before { left:24px; }
+      .adm-tl-dot { width:50px; min-width:50px; height:50px; }
+      .ann-inner { height:auto; min-height:44px; padding:6px 42px 6px 12px; }
+      .ann-pulse { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<header id="site-header">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">Summer Academy <span>Punjab, India</span></div>
+    </a>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="#home"         class="nav-link">Home</a></li>
+        <li><a href="#about"        class="nav-link">About</a></li>
+        <li><a href="#courses"      class="nav-link">Courses</a></li>
+        <li><a href="#admissions"   class="nav-link">Admissions</a></li>
+        <li><a href="#events"       class="nav-link">Events</a></li>
+        <li><a href="#achievements" class="nav-link">Awards</a></li>
+        <li><a href="#contact"      class="nav-link nav-cta">Contact Us</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div id="ann-banner">
+  <div class="ann-inner">
+    <span class="ann-pulse"></span>
+    <span class="ann-text">🎉 <strong>Admissions Open for 2026–27!</strong> Limited seats across all classes — apply before 31 March 2026 to secure your spot.</span>
+    <a href="#admissions" class="ann-link" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'});return false;">Apply Now →</a>
+    <button class="ann-close" id="ann-close" aria-label="Dismiss announcement">✕</button>
+  </div>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-badge"><span class="tb-icon">🏛️</span> CBSE Affiliated — Affiliation No. 1630XXX</div>
+    <div class="trust-sep"></div>
+    <div class="trust-badge"><span class="tb-icon">🏆</span> Best School Punjab 2024</div>
+    <div class="trust-sep"></div>
+    <div class="trust-badge"><span class="tb-icon">✅</span> ISO 9001:2015 Certified</div>
+    <div class="trust-sep"></div>
+    <div class="trust-badge"><span class="tb-icon">🌱</span> Green School Certified</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🏆 Ranked #1 School in Punjab 2024</div>
+    <h1>Shaping <em>Brilliant</em><br/>Minds of Tomorrow</h1>
+    <p>Welcome to Summer Academy School — where innovation meets tradition and every student is empowered to reach their fullest potential.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'})">✨ Admissions Open 2026–27</button>
+      <a href="#contact" class="btn-outline">Enquire Now →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" data-count="25" data-suffix="+">0+</div><div class="stat-label">Years of Excellence</div></div>
+      <div class="stat"><div class="stat-num" data-count="4200" data-suffix="">0</div><div class="stat-label">Happy Students</div></div>
+      <div class="stat"><div class="stat-num" data-count="98" data-suffix="%">0%</div><div class="stat-label">Pass Rate</div></div>
+      <div class="stat"><div class="stat-num" data-count="120" data-suffix="+">0+</div><div class="stat-label">Expert Faculty</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-card" style="padding:0;background:none;">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="Modern school building exterior" style="width:100%;height:100%;object-fit:cover;border-radius:24px;display:block;">
+        </div>
+        <div class="about-float-card">
+          <div class="about-float-icon">⭐</div>
+          <div class="about-float-text"><strong>Award Winning</strong><small>Best School in Punjab 2024</small></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">A Legacy of Learning &amp; Leadership</h2>
+        <p class="section-sub">Summer Academy School has been nurturing young minds since 1999. We combine academic rigour with character development to produce well-rounded graduates ready for the world.</p>
+        <div class="about-features">
+          <div class="about-feature"><div class="about-feature-icon">🔬</div><div><h4>Modern Laboratories</h4><p>State-of-the-art science &amp; computer labs with the latest technology.</p></div></div>
+          <div class="about-feature"><div class="about-feature-icon">📚</div><div><h4>Expert Faculty</h4><p>120+ highly qualified teachers passionate about student success and growth.</p></div></div>
+          <div class="about-feature"><div class="about-feature-icon">🌍</div><div><h4>Modern Exposure</h4><p>Competitions, workshops, field trips, and cultural events throughout the year.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="container">
+    <div class="courses-header reveal">
+      <div>
+        <div class="section-label">What We Offer</div>
+        <h2 class="section-title">Our Academic Programmes</h2>
+      </div>
+      <p class="section-sub" style="max-width:300px;">Click any course card to explore full details and highlights.</p>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card stripe-blue reveal" onclick="openModal('science')">
+        <div style="height:160px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80" alt="Students doing science experiments in lab" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div class="course-card-top"><span class="course-emoji">🔬</span><h3>Science &amp; Technology</h3><p>Hands-on experiments in physics, chemistry, and biology with modern lab facilities.</p></div>
+        <div class="course-card-bottom"><span class="course-tag tag-science">Science</span><span class="course-arrow">→</span></div>
+      </div>
+      <div class="course-card stripe-orange reveal" onclick="openModal('math')">
+        <div style="height:160px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80" alt="Mathematics equations on whiteboard" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div class="course-card-top"><span class="course-emoji">🔢</span><h3>Mathematics &amp; Logic</h3><p>From arithmetic to calculus — developing analytical thinkers who solve problems creatively.</p></div>
+        <div class="course-card-bottom"><span class="course-tag tag-math">Mathematics</span><span class="course-arrow">→</span></div>
+      </div>
+      <div class="course-card stripe-green reveal" onclick="openModal('lang')">
+        <div style="height:160px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Students reading books in school library" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div class="course-card-top"><span class="course-emoji">📖</span><h3>Languages &amp; Literature</h3><p>Master English, French, and Spanish through great literature and communication skills.</p></div>
+        <div class="course-card-bottom"><span class="course-tag tag-lang">Languages</span><span class="course-arrow">→</span></div>
+      </div>
+      <div class="course-card stripe-purple reveal" onclick="openModal('arts')">
+        <div style="height:160px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80" alt="Students doing art and creative activities" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div class="course-card-top"><span class="course-emoji">🎨</span><h3>Arts &amp; Creativity</h3><p>Painting, music, drama, and dance — nurturing creative expression in every student.</p></div>
+        <div class="course-card-bottom"><span class="course-tag tag-arts">Arts</span><span class="course-arrow">→</span></div>
+      </div>
+      <div class="course-card stripe-red reveal" onclick="openModal('cs')">
+        <div style="height:160px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&q=80" alt="Students coding on computers in computer lab" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div class="course-card-top"><span class="course-emoji">💻</span><h3>Computer Science &amp; AI</h3><p>Coding, robotics, and AI fundamentals in our cutting-edge technology lab environment.</p></div>
+        <div class="course-card-bottom"><span class="course-tag tag-tech">Technology</span><span class="course-arrow">→</span></div>
+      </div>
+      <div class="course-card stripe-teal reveal" onclick="openModal('sports')">
+        <div style="height:160px;overflow:hidden;"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=80" alt="Children running and playing sports on school field" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'"></div>
+        <div class="course-card-top"><span class="course-emoji">⚽</span><h3>Sports &amp; Physical Ed</h3><p>Cricket, football, athletics and yoga — building healthy bodies, discipline, and teamwork.</p></div>
+        <div class="course-card-bottom"><span class="course-tag tag-sports">Sports</span><span class="course-arrow">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="achievements-inner">
+    <div class="achievements-header reveal">
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">Awards &amp; Achievements</h2>
+      <p class="section-sub">25 years of excellence recognised at state and national level.</p>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card reveal">
+        <span class="ach-icon">🥇</span>
+        <h4>Best School in Punjab</h4>
+        <p>Recognised for academic excellence, global learning, and holistic student development.</p>
+        <span class="ach-year">2024</span>
+      </div>
+      <div class="ach-card reveal">
+        <span class="ach-icon">🏆</span>
+        <h4>National Science Olympiad</h4>
+        <p>Our students claimed 3 gold medals at the National Science Olympiad finals.</p>
+        <span class="ach-year">2023 – 2024</span>
+      </div>
+      <div class="ach-card reveal">
+        <span class="ach-icon">💡</span>
+        <h4>Innovation in Teaching</h4>
+        <p>CBSE award for pioneering AI-integrated curriculum in secondary education.</p>
+        <span class="ach-year">2023</span>
+      </div>
+      <div class="ach-card reveal">
+        <span class="ach-icon">🌱</span>
+        <h4>Green School Certification</h4>
+        <p>Recognised for solar-powered campus, zero-waste initiative, and garden labs.</p>
+        <span class="ach-year">2022 – 2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="section-label">Student &amp; Parent Reviews</div>
+      <h2 class="section-title">Voices of Our Community</h2>
+      <p class="section-sub">Hear directly from the families and students whose lives Summer Academy has transformed.</p>
+    </div>
+    <div class="carousel-wrap reveal">
+      <div class="carousel-outer">
+        <div class="carousel-track" id="carousel-track">
+          <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">Summer Academy completely transformed my daughter's confidence. The teachers here don't just teach — they genuinely care about each child's growth and future.</p><div class="tcard-author"><div class="tcard-avatar">👩</div><div><div class="tcard-name">Priya Sharma</div><div class="tcard-role">Parent · Class 10</div></div></div></div>
+          <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">The computer science programme is world-class. I learned Python, web dev, and even basic AI — all in school! Got placed in a top engineering college.</p><div class="tcard-author"><div class="tcard-avatar">👨‍💻</div><div><div class="tcard-name">Arjun Mehta</div><div class="tcard-role">Alumni · Batch 2023</div></div></div></div>
+          <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">Three of my children have studied here. The values instilled, the quality of education, and the extracurricular activities are simply unmatched in the region.</p><div class="tcard-author"><div class="tcard-avatar">👨‍👩‍👧</div><div><div class="tcard-name">Harjinder Singh</div><div class="tcard-role">Parent · 3 Children</div></div></div></div>
+          <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">I was a shy kid when I joined. The arts and drama club helped me find my voice. I now perform on national stages — Summer Academy made that possible.</p><div class="tcard-author"><div class="tcard-avatar">🎭</div><div><div class="tcard-name">Neha Kapoor</div><div class="tcard-role">Alumni · Batch 2022</div></div></div></div>
+          <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">My son represented the school in a youth football tournament thanks to the dedicated coaching staff here. Incredible sports facilities and mentorship!</p><div class="tcard-author"><div class="tcard-avatar">⚽</div><div><div class="tcard-name">Gurpreet Kaur</div><div class="tcard-role">Parent · Class 9</div></div></div></div>
+          <div class="tcard"><div class="tcard-quote">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">As a maths teacher of 15 years, I'm proud to work here. The administration supports innovation in teaching and our students regularly win state Olympiads.</p><div class="tcard-author"><div class="tcard-avatar">👨‍🏫</div><div><div class="tcard-name">Mr. Rajesh Kumar</div><div class="tcard-role">Maths Faculty · 15 yrs</div></div></div></div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="prev-btn">←</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+        <button class="carousel-btn" id="next-btn">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSIONS & FEES -->
+<section id="admissions">
+  <div class="container">
+    <div class="admissions-grid">
+      <div class="reveal">
+        <div class="section-label">Join Us</div>
+        <h2 class="section-title">Admissions Open<br/>Session 2026–27</h2>
+        <p class="section-sub">We welcome students from Nursery to Class XII. Admissions are merit-based with priority for siblings. Fee structure is transparent — no hidden charges.</p>
+        <div class="fee-cards">
+          <div class="fee-card"><div class="fee-card-icon">🏫</div><div class="fee-card-body"><strong>Nursery – Class V</strong><span>₹2,500 – ₹3,200/month · Includes books &amp; activity fee</span></div></div>
+          <div class="fee-card"><div class="fee-card-icon">📚</div><div class="fee-card-body"><strong>Class VI – Class X</strong><span>₹3,500 – ₹4,200/month · Lab &amp; sports included</span></div></div>
+          <div class="fee-card"><div class="fee-card-icon">🎓</div><div class="fee-card-body"><strong>Class XI – Class XII (Science/Commerce)</strong><span>₹4,800 – ₹5,500/month · All streams available</span></div></div>
+          <div class="fee-card"><div class="fee-card-icon">🌟</div><div class="fee-card-body"><strong>Merit Scholarships Available</strong><span>Up to 50% fee waiver for meritorious students</span></div></div>
+        </div>
+        <div class="admissions-cta-row">
+          <a href="https://wa.me/919876543210?text=Hi!%20I%20am%20enquiring%20about%20admissions%20at%20Summer%20Academy%20for%20session%202026-27." class="btn-wa" target="_blank" rel="noopener">💬 WhatsApp Enquiry</a>
+          <a href="#contact" class="btn-outline" style="color:var(--navy);border-color:var(--navy);">Request Full Fee Structure →</a>
+        </div>
+      </div>
+      <div class="admissions-steps reveal">
+        <div class="section-label">How to Apply</div>
+        <h3 class="section-title" style="font-size:1.6rem;">Simple 4-Step Process</h3>
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>Submit Enquiry</strong><span>Fill our contact form or WhatsApp us. We'll call you within 24 hours.</span></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>Campus Visit</strong><span>Schedule a guided tour. Meet teachers, see labs, and feel the school culture.</span></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>Interaction &amp; Test</strong><span>A friendly interaction (not an exam) to understand your child's learning style.</span></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>Confirmation &amp; Joining</strong><span>Complete the registration, submit documents, and your child is ready to begin!</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS & CALENDAR -->
+<section id="events">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:580px; margin:0 auto 0;">
+      <div class="section-label" style="justify-content:center;"><span></span>Upcoming Events</div>
+      <h2 class="section-title">School Calendar &amp; Open Days</h2>
+      <p class="section-sub" style="margin:0 auto;">Mark your dates — from open days to cultural fests, there's always something exciting at Summer Academy.</p>
+    </div>
+    <div class="events-grid">
+      <div class="event-card reveal">
+        <div class="event-date-band">
+          <div class="event-cal"><div class="event-cal-day">14</div><div class="event-cal-month">Jun</div></div>
+          <span class="event-type-badge">🏫 Open Day</span>
+        </div>
+        <div class="event-body"><h4>Admissions Open Day 2026</h4><p>Tour the campus, meet faculty, and get all your admission questions answered in one visit.</p></div>
+        <div class="event-meta">⏰ 9:00 AM – 1:00 PM &nbsp;·&nbsp; Main Campus</div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-date-band">
+          <div class="event-cal"><div class="event-cal-day">22</div><div class="event-cal-month">Jul</div></div>
+          <span class="event-type-badge">🔬 Academic</span>
+        </div>
+        <div class="event-body"><h4>Science &amp; Innovation Fair</h4><p>Students showcase their projects in robotics, AI, environmental science and more. Open to all parents.</p></div>
+        <div class="event-meta">⏰ 10:00 AM – 4:00 PM &nbsp;·&nbsp; Science Block</div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-date-band">
+          <div class="event-cal"><div class="event-cal-day">15</div><div class="event-cal-month">Aug</div></div>
+          <span class="event-type-badge">🎉 Cultural</span>
+        </div>
+        <div class="event-body"><h4>Annual Cultural Festival</h4><p>Annual celebration with dance, music, drama performances and prize distribution.</p></div>
+        <div class="event-meta">⏰ 8:00 AM – 12:00 PM &nbsp;·&nbsp; Main Auditorium</div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-date-band">
+          <div class="event-cal"><div class="event-cal-day">Oct</div><div class="event-cal-month">2026</div></div>
+          <span class="event-type-badge">📝 Exams</span>
+        </div>
+        <div class="event-body"><h4>Mid-Term Examinations</h4><p>Half-yearly assessments for all classes. Detailed schedule shared via school app in September.</p></div>
+        <div class="event-meta">⏰ TBC &nbsp;·&nbsp; All Classrooms</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:28px;">
+      <div>
+        <div class="section-label">Campus Life</div>
+        <h2 class="section-title">Life at Summer Academy</h2>
+        <p class="section-sub">Click any photo to view full size. Filter by category below.</p>
+      </div>
+    </div>
+    <div class="gallery-filter reveal">
+      <button class="gf-btn active" data-filter="all">All Photos</button>
+      <button class="gf-btn" data-filter="campus">Campus</button>
+      <button class="gf-btn" data-filter="labs">Labs &amp; Tech</button>
+      <button class="gf-btn" data-filter="sports">Sports</button>
+      <button class="gf-btn" data-filter="events">Events</button>
+    </div>
+    <div class="gallery-masonry" id="gallery-masonry">
+      <div class="g-item reveal" data-cat="campus" data-label="Our Beautiful Campus" data-img="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80" alt="Modern school campus building" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Campus</span><span class="g-label">Our Beautiful Campus</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="labs" data-label="Science Laboratories" data-img="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=700&q=80" alt="Students doing science experiments in lab" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Labs</span><span class="g-label">Science Laboratories</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="sports" data-label="Annual Sports Day" data-img="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=700&q=80" alt="Children running and playing sports on field" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Sports</span><span class="g-label">Annual Sports Day</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="events" data-label="Cultural Festival" data-img="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=80" alt="Students in cultural performance on stage" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Events</span><span class="g-label">Cultural Festival</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="labs" data-label="Computer &amp; AI Lab" data-img="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=700&q=80" alt="Students coding in computer lab" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Labs</span><span class="g-label">Computer &amp; AI Lab</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="sports" data-label="Football Training" data-img="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=700&q=80" alt="Students playing football on a school field" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Sports</span><span class="g-label">Football Training</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="campus" data-label="School Library" data-img="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=80" alt="Students reading books in school library" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Campus</span><span class="g-label">School Library</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="events" data-label="Art &amp; Craft Exhibition" data-img="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80" alt="Students displaying art and craft work" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Events</span><span class="g-label">Art &amp; Craft Exhibition</span></div>
+      </div>
+      <div class="g-item reveal" data-cat="labs" data-label="Mathematics Class" data-img="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=700&q=80">
+        <div class="g-inner"><img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=700&q=80" alt="Mathematics equations on whiteboard" loading="lazy"></div>
+        <div class="g-overlay"><span class="g-cat-tag">Labs</span><span class="g-label">Mathematics Class</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <div class="lb-content">
+    <button class="lb-close" id="lb-close" aria-label="Close lightbox">✕</button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous image">←</button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Next image">→</button>
+    <div class="lb-img-wrap" id="lb-img-wrap"></div>
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+</div>
+
+<!-- LOCATION & MAP -->
+<section id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div class="reveal">
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title">Visit Our Campus</h2>
+        <p class="section-sub">Conveniently located in the heart of Phagwara, Punjab — easy to reach by road and rail.</p>
+        <div class="location-details" style="margin-top:28px;">
+          <div class="loc-item"><div class="loc-icon">📍</div><div class="loc-text"><strong>Campus Address</strong><span>Summer Academy School<br/>Near Bus Stand, Phagwara<br/>Punjab – 144 401, India</span></div></div>
+          <div class="loc-item"><div class="loc-icon">🚌</div><div class="loc-text"><strong>School Bus Service</strong><span>Covering Phagwara, Kapurthala, Jalandhar &amp; nearby areas. Routes available on request.</span></div></div>
+          <div class="loc-item"><div class="loc-icon">🚉</div><div class="loc-text"><strong>Nearest Railway Station</strong><span>Phagwara Junction — 1.2 km from campus. Auto and e-rickshaw available.</span></div></div>
+          <div class="loc-item"><div class="loc-icon">🕐</div><div class="loc-text"><strong>School Timings</strong><span>Mon – Sat: 7:45 AM – 2:30 PM<br/>Office: 8:00 AM – 4:00 PM</span></div></div>
+        </div>
+        <a href="https://maps.google.com/?q=Phagwara+Punjab+India" target="_blank" rel="noopener" class="btn-primary" style="margin-top:24px;display:inline-block;">📍 Open in Google Maps</a>
+      </div>
+      <div class="reveal">
+        <a href="https://maps.google.com/?q=Phagwara+Punjab+India" target="_blank" rel="noopener" class="map-frame map-frame-link" aria-label="Open Summer Academy location in Google Maps">
+          <div class="map-visual">
+            <!-- Decorative map grid -->
+            <svg class="map-bg-svg" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Road grid -->
+              <rect width="460" height="300" fill="#1e3a5f"/>
+              <!-- Horizontal roads -->
+              <rect x="0" y="60"  width="460" height="3"  fill="rgba(255,255,255,.07)" rx="1"/>
+              <rect x="0" y="120" width="460" height="3"  fill="rgba(255,255,255,.07)" rx="1"/>
+              <rect x="0" y="180" width="460" height="3"  fill="rgba(255,255,255,.07)" rx="1"/>
+              <rect x="0" y="240" width="460" height="3"  fill="rgba(255,255,255,.07)" rx="1"/>
+              <!-- Vertical roads -->
+              <rect x="80"  y="0" width="3" height="300" fill="rgba(255,255,255,.07)" rx="1"/>
+              <rect x="180" y="0" width="3" height="300" fill="rgba(255,255,255,.07)" rx="1"/>
+              <rect x="280" y="0" width="3" height="300" fill="rgba(255,255,255,.07)" rx="1"/>
+              <rect x="380" y="0" width="3" height="300" fill="rgba(255,255,255,.07)" rx="1"/>
+              <!-- Main road highlight (horizontal) -->
+              <rect x="0" y="138" width="460" height="24" fill="rgba(46,107,196,.25)" rx="2"/>
+              <!-- Main road highlight (vertical) -->
+              <rect x="208" y="0" width="24" height="300" fill="rgba(46,107,196,.25)" rx="2"/>
+              <!-- Road dashes -->
+              <rect x="0"   y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <rect x="60"  y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <rect x="120" y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <rect x="240" y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <rect x="300" y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <rect x="360" y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <rect x="420" y="149" width="40" height="2" fill="rgba(255,255,255,.18)" rx="1"/>
+              <!-- City blocks -->
+              <rect x="88"  y="8"   width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="188" y="8"   width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="288" y="8"   width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="88"  y="68"  width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="288" y="68"  width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="388" y="68"  width="65" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="8"   y="68"  width="65" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="8"   y="170" width="65" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="88"  y="170" width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="288" y="170" width="84" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="388" y="170" width="65" height="44" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="8"   y="230" width="65" height="60" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="88"  y="230" width="84" height="60" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="188" y="230" width="84" height="60" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="288" y="230" width="84" height="60" fill="rgba(255,255,255,.04)" rx="4"/>
+              <rect x="388" y="230" width="65" height="60" fill="rgba(255,255,255,.04)" rx="4"/>
+              <!-- School block highlight -->
+              <rect x="192" y="106" width="76" height="52" fill="rgba(245,166,35,.18)" rx="5"/>
+              <rect x="192" y="106" width="76" height="52" fill="none" stroke="rgba(245,166,35,.5)" stroke-width="1.5" rx="5"/>
+              <!-- Pin shadow -->
+              <ellipse cx="230" cy="148" rx="14" ry="5" fill="rgba(0,0,0,.35)"/>
+              <!-- Pin body -->
+              <circle cx="230" cy="118" r="18" fill="#f5a623"/>
+              <circle cx="230" cy="118" r="18" fill="none" stroke="#fff" stroke-width="2.5"/>
+              <!-- Pin inner dot -->
+              <circle cx="230" cy="118" r="7" fill="#fff"/>
+              <!-- Pin tail -->
+              <polygon points="230,140 220,124 240,124" fill="#f5a623"/>
+              <!-- School icon inside pin -->
+              <text x="230" y="122" text-anchor="middle" font-size="9" fill="#0a1628" font-weight="900">🎓</text>
+            </svg>
+            <div class="map-cta-overlay">
+              <div class="map-cta-pill">
+                <span>📍</span>
+                <span>View on Google Maps</span>
+                <span class="map-arrow">↗</span>
+              </div>
+              <p class="map-addr">Near Bus Stand, Phagwara, Punjab – 144 401</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label" style="color:var(--accent);">Get In Touch</div>
+        <h2 class="section-title">We'd Love to<br/>Hear From You</h2>
+        <p class="section-sub">Questions about admissions, fees, or programmes? Our team replies within 24 hours.</p>
+        <div class="contact-details">
+          <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-text"><strong>Our Address</strong><span>Near Bus Stand, Phagwara, Punjab 144401</span></div></div>
+          <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-text"><strong>Phone Number</strong><span>+91 98765 43210</span></div></div>
+          <div class="contact-item"><div class="contact-item-icon">📧</div><div class="contact-item-text"><strong>Email Address</strong><span>info@summeracademy.edu.in</span></div></div>
+          <div class="contact-item"><div class="contact-item-icon">🕐</div><div class="contact-item-text"><strong>Office Hours</strong><span>Mon – Sat: 8:00 AM – 4:00 PM</span></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="contact-form-box">
+          <h3>Send Us a Message</h3>
+          <p>Fill the form and we'll get back to you shortly.</p>
+          <div class="success-box" id="success-box">✅ Message sent! We'll reply soon.</div>
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group" id="fg-name"><label for="name">Full Name *</label><input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name"/><div class="error-msg" id="err-name">Please enter your full name.</div></div>
+              <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="+91 00000 00000"/></div>
+            </div>
+            <div class="form-group" id="fg-email"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email"/><div class="error-msg" id="err-email">Please enter a valid email.</div></div>
+            <div class="form-group"><label for="subject">I'm Enquiring About</label><select id="subject" name="subject"><option value="">Select a topic…</option><option>Admissions &amp; Enrolment</option><option>Fee Structure</option><option>Academic Programmes</option><option>Scholarships</option><option>Other</option></select></div>
+            <div class="form-group" id="fg-message"><label for="message">Your Message *</label><textarea id="message" name="message" placeholder="Write your message here…"></textarea><div class="error-msg" id="err-message">Please write your message.</div></div>
+            <button type="submit" class="submit-btn" id="submit-btn">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <span class="footer-badge">🎓 Summer Academy School</span>
+    <span class="footer-badge">📍 Phagwara, Punjab</span>
+    <span class="footer-badge">🏆 Est. 1999</span>
+  </div>
+  <div class="footer-divider"></div>
+  <p>© 2026 <strong>Summer Academy School</strong>. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#admissions">Admissions</a><a href="#events">Events</a><a href="#achievements">Awards</a><a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP QUICK CONTACT -->
+<a id="wa-btn" href="https://wa.me/919876543210?text=Hi!%20I%20have%20an%20enquiry%20about%20Summer%20Academy%20School%2C%20Phagwara." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<!-- BACK TO TOP -->
+<button id="back-top" aria-label="Back to top">↑</button>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" id="modal-close">✕</button>
+    <span class="modal-emoji" id="m-emoji"></span>
+    <h2 class="modal-title" id="m-title"></h2>
+    <span class="modal-tag" id="m-tag"></span>
+    <p class="modal-body" id="m-body"></p>
+    <div class="modal-highlights" id="m-highlights"></div>
+    <button class="modal-enroll" id="modal-enroll">Enquire About This Course →</button>
+  </div>
+</div>
+
+<script>
+/* === PROGRESS BAR === */
+const bar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const st = window.scrollY, dh = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+}, { passive: true });
+
+/* === HEADER SCROLL SHADOW === */
+const siteHeader = document.getElementById('site-header');
+window.addEventListener('scroll', () => siteHeader.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+/* === HAMBURGER === */
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); navMenu.classList.toggle('open'); });
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('open'); navMenu.classList.remove('open'); }));
+/* Close mobile nav on outside tap */
+document.addEventListener('click', e => {
+  if (navMenu.classList.contains('open') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove('open'); navMenu.classList.remove('open');
+  }
+});
+
+/* === ACTIVE NAV === */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+function updateNav() {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+/* === BACK TO TOP === */
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400), { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* === SCROLL REVEAL === */
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 90); revObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* === COUNTER ANIMATION === */
+function animCount(el) {
+  const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+  const duration = 2000, steps = duration / 16;
+  const inc = target / steps;
+  let cur = 0;
+  const t = setInterval(() => {
+    cur = Math.min(cur + inc, target);
+    el.textContent = (target >= 1000 ? Math.round(cur).toLocaleString('en-IN') : Math.round(cur)) + suffix;
+    if (cur >= target) clearInterval(t);
+  }, 16);
+}
+const cntObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); cntObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+/* === COURSE MODAL === */
+const courses = {
+  science: { emoji:'🔬', title:'Science & Technology', tag:'Science', tagClass:'tag-science', body:'Our Science & Technology programme blends rigorous theory with immersive hands-on lab work. Students explore physics, chemistry, and biology through real experiments guided by passionate experts.', highlights:['State-of-the-art lab with latest equipment','Weekly practical experiments','Inter-school science competitions','Science fair project mentorship','Strong foundation for engineering/medicine'] },
+  math:    { emoji:'🔢', title:'Mathematics & Logic',   tag:'Mathematics', tagClass:'tag-math', body:'From foundational arithmetic to advanced calculus and statistics, our Maths programme challenges students to think analytically using strategies from competitive exams and real-world scenarios.', highlights:['Olympiad preparation classes','Vedic Maths & mental arithmetic','Weekly puzzle-solving sessions','Board exam 99% pass rate','Dedicated doubt-clearing labs'] },
+  lang:    { emoji:'📖', title:'Languages & Literature',tag:'Languages', tagClass:'tag-lang', body:'We offer comprehensive English, French, and Spanish programmes. Through great literature, creative writing, and debate, students develop powerful communication skills that last a lifetime.', highlights:['English, French & Spanish streams','Creative writing workshops','Debate & public speaking club','Annual literary festival','Language exchange programmes'] },
+  arts:    { emoji:'🎨', title:'Arts & Creativity',     tag:'Arts', tagClass:'tag-arts', body:'Our arts programme nurtures the whole creative person — through painting, sculpture, classical and western music, dance, and dramatic arts. Students perform at state-level cultural festivals.', highlights:['Painting, drawing & digital art','Classical music & instruments','Bharatnatyam & western dance','Annual school drama production','Art exhibition every semester'] },
+  cs:      { emoji:'💻', title:'Computer Science & AI', tag:'Technology', tagClass:'tag-tech', body:'Future-ready computing covering programming, web development, data science fundamentals, robotics, and artificial intelligence. Our graduates are fully equipped for the digital economy.', highlights:['Python, Java & web development','AI & machine learning basics','Robotics with physical kits','Hackathons & coding competitions','Industry mentor sessions'] },
+  sports:  { emoji:'⚽', title:'Sports & Physical Ed',  tag:'Sports', tagClass:'tag-sports', body:'A comprehensive PE programme covering football, basketball, athletics, swimming, tennis, and yoga. We develop fitness, mental discipline, and the spirit of teamwork through structured coaching.', highlights:['Professional coaching in 6+ sports','Inter-school competitions','Yoga & mindfulness classes','Sports psychology workshops','Modern gymnasium & pool'] },
+};
+function openModal(key) {
+  const d = courses[key];
+  document.getElementById('m-emoji').textContent = d.emoji;
+  document.getElementById('m-title').textContent = d.title;
+  const tag = document.getElementById('m-tag');
+  tag.textContent = d.tag; tag.className = 'modal-tag course-tag ' + d.tagClass;
+  document.getElementById('m-body').textContent = d.body;
+  document.getElementById('m-highlights').innerHTML = d.highlights.map(h => `<div class="modal-highlight">${h}</div>`).join('');
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-enroll').addEventListener('click', () => { closeModal(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); });
+document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === document.getElementById('modal-overlay')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* === CAROUSEL === */
+const track = document.getElementById('carousel-track');
+const dotsWrap = document.getElementById('carousel-dots');
+const cards = Array.from(track.querySelectorAll('.tcard'));
+const total = cards.length;
+let cur = 0, perView = 3, autoTimer;
+function getPerView() {
+  if (window.innerWidth < 640) return 1;
+  if (window.innerWidth < 900) return 2;
+  return 3;
+}
+function buildDots() {
+  dotsWrap.innerHTML = '';
+  const pages = Math.ceil(total / perView);
+  for (let i = 0; i < pages; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => { goTo(i * perView); resetAuto(); });
+    dotsWrap.appendChild(d);
+  }
+}
+function updateDots() {
+  dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === Math.round(cur / perView)));
+}
+function updateLayout() {
+  perView = getPerView();
+  const gap = 24, w = track.parentElement.offsetWidth;
+  const cw = (w - gap * (perView - 1)) / perView;
+  cards.forEach(c => { c.style.width = cw + 'px'; c.style.flexShrink = '0'; });
+  cur = 0; track.style.transform = 'translateX(0)';
+  buildDots();
+}
+function goTo(idx) {
+  const max = total - perView;
+  cur = Math.max(0, Math.min(idx, max));
+  const gap = 24, cw = cards[0].offsetWidth;
+  track.style.transform = `translateX(-${cur * (cw + gap)}px)`;
+  updateDots();
+}
+document.getElementById('prev-btn').addEventListener('click', () => { goTo(cur - perView); resetAuto(); });
+document.getElementById('next-btn').addEventListener('click', () => { goTo(cur + perView > total - perView ? 0 : cur + perView); resetAuto(); });
+function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(cur + perView > total - perView ? 0 : cur + perView), 4500); }
+window.addEventListener('resize', updateLayout);
+updateLayout(); resetAuto();
+
+/* === TOUCH SWIPE FOR CAROUSEL === */
+let touchStartX = 0;
+track.parentElement.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+track.parentElement.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { goTo(diff > 0 ? cur + perView : cur - perView); resetAuto(); }
+});
+
+/* === CONTACT FORM === */
+const form = document.getElementById('contact-form');
+const successBox = document.getElementById('success-box');
+function setErr(fg, err, show) { document.getElementById(fg).classList.toggle('has-error', show); document.getElementById(err).classList.toggle('show', show); }
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  successBox.classList.remove('show');
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value.trim();
+  const msg = document.getElementById('message').value.trim();
+  let ok = true;
+  setErr('fg-name','err-name',!name);             if (!name)            ok = false;
+  setErr('fg-email','err-email',!validEmail(email)); if (!validEmail(email)) ok = false;
+  setErr('fg-message','err-message',!msg);        if (!msg)             ok = false;
+  if (!ok) return;
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, email, subject, message: msg })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error(data.error || 'Unable to save message.');
+    successBox.classList.add('show'); form.reset();
+    btn.textContent = 'Send Message ->'; btn.disabled = false;
+    successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => successBox.classList.remove('show'), 6000);
+  } catch (err) {
+    alert('Could not save your message. Please start the backend server and try again.');
+    btn.textContent = 'Send Message ->'; btn.disabled = false;
+  }
+});['name','email','message'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    document.getElementById('fg-'+id)?.classList.remove('has-error');
+    document.getElementById('err-'+id)?.classList.remove('show');
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1778262689811",
+    "createdAt": "2026-05-08T17:51:29.811Z",
+    "name": "Test Student",
+    "phone": "+91 99999 99999",
+    "email": "test@example.com",
+    "subject": "Admissions & Enrolment",
+    "message": "This is a backend test submission."
+  },
+  {
+    "id": "1778262849101",
+    "createdAt": "2026-05-08T17:54:09.101Z",
+    "name": "Backend Check",
+    "phone": "+91 99999 99999",
+    "email": "backendcheck@example.com",
+    "subject": "Fee Structure",
+    "message": "Checking backend after encoding repair."
+  }
+]
